@@ -1,9 +1,9 @@
-  sumData <- function(date) {
+sumData <- function(date) {
   if (date >= min(data_evolution$date)) {
     data <- data_atDate(date) %>% summarise(
-      confirmed = sum(confirmed),
-      recovered = sum(recovered),
-      deceased  = sum(deceased),
+      confirmed = sum(confirmed, na.rm = T),
+      recovered = sum(recovered, na.rm = T),
+      deceased  = sum(deceased, na.rm = T),
       countries = n_distinct(`Country/Region`)
     )
     return(data)
@@ -45,7 +45,7 @@ output$valueBox_confirmed <- renderValueBox({
 output$valueBox_recovered <- renderValueBox({
   valueBox(
     key_figures()$recovered,
-    subtitle = "Recovered",
+    subtitle = "Estimated Recoveries",
     icon     = icon("heart"),
     color    = "light-blue"
   )

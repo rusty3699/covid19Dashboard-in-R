@@ -1,4 +1,4 @@
-  body_about <- dashboardBody(
+body_about <- dashboardBody(
   fluidRow(
     fluidRow(
       column(
@@ -16,15 +16,15 @@
             h3("Data"),
             tags$ul(
               tags$li(tags$b("COVID-19 data:"), tags$a(href = "https://github.com/CSSEGISandData/COVID-19",
-                "Johns Hopkins CSSE")),
+                                                       "Johns Hopkins CSSE")),
               tags$li(tags$b("Population data:"), tags$a(href = "https://data.worldbank.org/indicator/SP.POP.TOTL",
-                "The World Bank"), "& Wikipedia."),
+                                                         "The World Bank"), "& Wikipedia."),
               tags$li(tags$b("WHO"), tags$a(href = "https://www.who.int/",
-                                                       "WHO")),
+                                            "WHO")),
             ),
             "",
             h3("Developer"),
-            "Anish Tipnis | TY IT STUDENT @ MUMBAI",
+            "Anish Tipnis | Computer Science",
             
             
             

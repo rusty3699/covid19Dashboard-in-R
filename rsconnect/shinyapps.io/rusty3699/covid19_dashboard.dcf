@@ -1,10 +1,11 @@
-name: covid19_dashboard
-title:
+name: Covid19_Dashboard
+title: Covid19_Dashboard
 username:
 account: rusty3699
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1978506
-bundleId: 2938488
+bundleId: 5258129
 url: https://rusty3699.shinyapps.io/covid19_dashboard/
-when: 1585459910.8096
+when: 1637072223.77466
+lastSyncTime: 1637072223.77466

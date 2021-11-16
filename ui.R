@@ -3,9 +3,10 @@ source("sections/ui_plots.R", local = TRUE)
 source("sections/ui_about.R", local = TRUE)
 source("sections/ui_fullTable.R", local = TRUE)
 
-ui <- tagList(
+ui <- fluidPage(
+  title = "Anish Tipnis || Covid-19 Dashboard",
   tags$head(
-    tags$link(rel = "shortcut icon", type = "image/png", href = "anish1.png")
+    tags$link(rel = "shortcut icon", type = "image/png", href = "logo.png")
   ),
   tags$style(type = "text/css", ".container-fluid {padding-left: 0px; padding-right: 0px !important;}"),
   tags$style(type = "text/css", ".navbar {margin-bottom: 0px;}"),
@@ -14,15 +15,15 @@ ui <- tagList(
   tags$style(HTML(".col-sm-12 { padding: 5px; margin-bottom: -15px; }")),
   tags$style(HTML(".col-sm-6 { padding: 5px; margin-bottom: -15px; }")),
   navbarPage(
-    title       = "ANISH TIPNIS || COVID-19",
+    title       = div("Anish Tipnis || Covid-19 Dashboard", style = "padding-left: 10px"),
     collapsible = TRUE,
     fluid       = TRUE,
-    tabPanel("WORLD", page_overview, value = "page-overview"),
+    tabPanel("Overview", page_overview, value = "page-overview"),
     tabPanel("Table", page_fullTable, value = "page-fullTable"),
     tabPanel("Plots", page_plots, value = "page-plots"),
     tabPanel("About", page_about, value = "page-about"),
     tags$script(HTML("var header = $('.navbar > .container-fluid');
-    header.append('<div style=\"float:right\"><a target=\"_blank\" href=\"https://twitter.com/rusty3699\"><img src=\"anish1.png\" alt=\"alt\" style=\"float:right;width:33px;padding-top:10px;margin-top:-50px;margin-right:10px\"> </a></div>');
+    
     console.log(header)")
     )
   )

@@ -6,7 +6,7 @@ addLabel <- function(data) {
     <table style="width:120px;">
     <tr><td>Confirmed:</td><td align="right">', data$confirmed, '</td></tr>
     <tr><td>Deceased:</td><td align="right">', data$deceased, '</td></tr>
-    <tr><td>Recovered:</td><td align="right">', data$recovered, '</td></tr>
+    <tr><td>Estimated Recoveries:</td><td align="right">', data$recovered, '</td></tr>
     <tr><td>Active:</td><td align="right">', data$active, '</td></tr>
     </table>'
   )
@@ -17,20 +17,25 @@ addLabel <- function(data) {
 
 map <- leaflet(addLabel(data_latest)) %>%
   setMaxBounds(-180, -90, 180, 90) %>%
-  setView(0, 0, zoom = 2) %>%
+  setView(0, 20, zoom = 2) %>%
   addTiles() %>%
   addProviderTiles(providers$CartoDB.Positron, group = "Light") %>%
   addProviderTiles(providers$HERE.satelliteDay, group = "Satellite") %>%
   addLayersControl(
     baseGroups    = c("Light", "Satellite"),
-    overlayGroups = c("Confirmed", "Confirmed (per capita)", "Recovered", "Deceased", "Active", "Active (per capita)"),
-    options       = layersControlOptions(collapsed = FALSE)
+    overlayGroups = c("Confirmed", "Confirmed (per capita)", "Estimated Recoveries", "Deceased", "Active", "Active (per capita)")
   ) %>%
   hideGroup("Confirmed (per capita)") %>%
-  hideGroup("Recovered") %>%
+  hideGroup("Estimated Recoveries") %>%
   hideGroup("Deceased") %>%
   hideGroup("Active") %>%
-  hideGroup("Active (per capita)")
+  hideGroup("Active (per capita)") %>%
+  addEasyButton(easyButton(
+    icon    = "glyphicon glyphicon-globe", title = "Reset zoom",
+    onClick = JS("function(btn, map){ map.setView([20, 0], 2); }"))) %>%
+  addEasyButton(easyButton(
+    icon    = "glyphicon glyphicon-map-marker", title = "Locate Me",
+    onClick = JS("function(btn, map){ map.locate({setView: true, maxZoom: 6}); }")))
 
 observe({
   req(input$timeSlider, input$overview_map_zoom)
@@ -71,7 +76,7 @@ observe({
       fillOpacity  = 0.5,
       label        = ~label,
       labelOptions = labelOptions(textsize = 15),
-      group        = "Recovered"
+      group = "Estimated Recoveries"
     ) %>%
     addCircleMarkers(
       lng          = ~Long,
